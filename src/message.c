@@ -1806,7 +1806,10 @@ msg_prt_line(char_u *s, int list)
     /* output a space for an empty line, otherwise the line will be
      * overwritten */
     if (*s == NUL && !(list && lcs_eol != NUL))
-	msg_putchar(' ');
+    {
+	msg_putchar('\0');
+	got_int = 1;
+    }
 
     while (!got_int)
     {
